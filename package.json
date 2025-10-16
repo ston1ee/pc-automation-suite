@@ -1,0 +1,78 @@
+{
+  "name": "pc-automation-suite",
+  "version": "1.0.0",
+  "description": "A comprehensive desktop automation application with auto-clicker, macro recorder/player, and hotkey functionality",
+  "main": "src/main.js",
+  "homepage": ".",
+  "author": "Your Name",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "npm install && electron-builder",
+    "build-win": "npm install && electron-builder --win",
+    "build-linux": "npm install && electron-builder --linux",
+    "build-mac": "npm install && electron-builder --mac",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.automation.pc-suite",
+    "productName": "PC Automation Suite",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.png"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "assets/icon.icns"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "robotjs": "^0.6.0",
+    "node-global-key-listener": "^0.1.1",
+    "electron-store": "^8.1.0"
+  }
+}
